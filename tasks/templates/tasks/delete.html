@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Todo App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body style="background-color:red">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<div class="container">
+<div class="row">
+<div class="col" style="margin:0 auto; padding-top:8%;" align="center">
+<h1 style="color:white">Are You Sure You Want To Delete "{{item}}" ? </h1>
+<a class="btn btn-outline-light" href="{% url 'List' %}" ><h1>Cancel</h1></a>
+<br>
+<form method="POST" action="">
+<br>
+	{% csrf_token %}
+<button class="btn btn-outline-light" type="submit" ><h1>Delete</h1></button>
+</form>
+</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Todo App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<div class="container">
+<div class="row">
+<div class="col" style="margin:0 auto" align="center">
+<div class="card">
+<div class="card-header">
+<h1>Todo App with Django and SQLite</h1>
+</div>
+{% load crispy_forms_tags %}
+
+<form method="POST" action="/" style="padding:5px">
+ {% csrf_token %} 
+{{form.title|as_crispy_field}}
+<input type="submit" name="Create Task" class="btn btn-info">
+</form>
+
+</div>
+<br>
+{% for task in tasks %}
+<ul class="list-group">
+<li class="list-group-item">
+{% if task.complete == True %}
+<h3><strike>{{task}}</strike> <span class="text-success">(Completed)</span></h3>
+{% else %}
+<h3>{{task}} <span class="text-warning">(Not Complete)</span></h3>
+{% endif %}
+<a href="{% url 'update_task' task.id %}" class="btn btn-warning">Update</a>
+<a href="{% url 'delete' task.id %}" class="btn btn-danger">Delete!</a>
+</li>
+<br>
+</ul>
+{% endfor %}
+</div>
+</div>
+</div>
+
+</body>
+</html>
